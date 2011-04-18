@@ -58,6 +58,7 @@ public:
 
   void getPackages(IPackageRetrieveCallback *callback);
   void install(const std::string &ID, IInstallCallback *callback);
+  void remove(const std::string &ID, IInstallCallback *callback);
 
 protected:
   virtual void Process();

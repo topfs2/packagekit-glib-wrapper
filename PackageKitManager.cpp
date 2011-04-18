@@ -77,6 +77,28 @@ void CPackageKitManager::install(const string &ID, IInstallCallback *callback)
   g_free(packages[0]);
 }
 
+void CPackageKitManager::remove(const string &ID, IInstallCallback *callback)
+{
+  PackageInstallUserData *user_data = new PackageInstallUserData;
+  user_data->callback = callback;
+
+  gchar *packages[2];
+  packages[0] = g_strdup_printf("%s", ID.c_str());
+  packages[1] = NULL;
+
+  pk_client_remove_packages_async(m_client,
+                                  packages,
+                                  true,
+                                  true,
+                                  NULL,
+                                  CPackageKitManager::InstallProgressCallback,
+                                  user_data,
+                                  CPackageKitManager::InstallFinishCallback,
+                                  user_data);
+
+  g_free(packages[0]);
+}
+
 void CPackageKitManager::Process()
 {
 	g_main_loop_run(m_loop);
