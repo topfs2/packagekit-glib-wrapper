@@ -56,7 +56,7 @@ void CPackageKitManager::getPackages(IPackageRetrieveCallback *callback)
                                user_data);
 }
 
-void CPackageKitManager::install(string ID, IInstallCallback *callback)
+void CPackageKitManager::install(const string &ID, IInstallCallback *callback)
 {
   PackageInstallUserData *user_data = new PackageInstallUserData;
   user_data->callback = callback;
