@@ -61,8 +61,9 @@ void CPackageKitManager::install(const string &ID, IInstallCallback *callback)
   PackageInstallUserData *user_data = new PackageInstallUserData;
   user_data->callback = callback;
 
-  gchar **packages = new gchar *[1];
+  gchar *packages[2];
   packages[0] = g_strdup_printf("%s", ID.c_str());
+  packages[1] = NULL;
 
   pk_client_install_packages_async(m_client,
                                    TRUE,
@@ -74,7 +75,6 @@ void CPackageKitManager::install(const string &ID, IInstallCallback *callback)
                                    user_data);
 
   g_free(packages[0]);
-  delete packages;
 }
 
 void CPackageKitManager::Process()
