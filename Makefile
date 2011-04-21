@@ -8,10 +8,10 @@ CXXFLAGS:=$(CFLAGS)
 all: package-kit
 
 package-kit: $(OBJS)
-	$(CC) $(CFLAGS) -o package-kit $(OBJS) $(LFLAGS) $(LIBS)
+	$(CXX) $(CXXFLAGS) -o package-kit $(OBJS) $(LFLAGS) $(LIBS)
 
 .cpp.o:
-	$(CC) $(CFLAGS) $(INCLUDES) -c $<
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $<
 
 clean: 
 	rm -f $(OBJS) $(SOURCES:.cpp=.d) package-kit
